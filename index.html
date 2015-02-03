@@ -21,9 +21,20 @@
 			<div ng-show="addComment">
 				<input ng-model="commentTxt"type="text"/>
 				
-				<button ng-click="addCommentTxt()"class="button">submit</button>
+				<button ng-click="pushComments(message.$id, commentTxt)"class="button">submit</button>
+
+				<hr/>
+
+				<div ng-repeat="comment in message.comments" class=" storyContainer commentContainer">
+				
+					{{comment.text}}
+				</div>
+
+				<hr/>
+						
 			</div>
 		</div>
+
 
 
 </div>
