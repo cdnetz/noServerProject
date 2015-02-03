@@ -9,19 +9,19 @@
 <div class="header"><h1>Post Sports</h1></div>
 
 <div class="content"> 
-	<textarea class="textbox" ng-model="commentTxt" placeholder="add your story...." rows="4" cols="50"></textarea> 
+	<textarea class="textbox" ng-model="storyTxt" placeholder="add your story...." rows="4" cols="50"></textarea> 
 	<br/>
 	<button class="button" ng-click="pushMessage()">submit</button>
 
 		<div ng-repeat="message in messages">
-			<div class="comments">{{message.message}}</div>
+			<div class="storyContainer">{{message.message}}</div>
 		<button class="button" ng-click="addComment = !addComment"> add a comment</button>
 
 		<br/>
 			<div ng-show="addComment">
-				<input type="text"/>
+				<input ng-model="commentTxt"type="text"/>
 				
-				<button class="button">submit</button>
+				<button ng-click="addCommentTxt()"class="button">submit</button>
 			</div>
 		</div>
 
