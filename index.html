@@ -6,47 +6,38 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body ng-controller="SampleController">
-<div class="header"><h1>Post Sports</h1></div>
+<div class="header">
 
-<!-- <div ng-show="!reg">
-        <h2>Login</h2>
-        <form ng-submit="login()">
-            <p ng-show="error" class="text-danger">{{ error }}</p>
-            <input type="email" placeholder="Email" class="form-control" ng-model="details.email" required><br>
-            <input type="password" placeholder="Password" class="form-control" ng-model="details.password" required><br>
-            <input type="submit" class="btn btn-info" value="Sign In">
-        </form>
-    </div>
-    <div ng-show="reg">
-        <h2>Register</h2>
-      
-        <form ng-submit="register()">
-            <p ng-show="error" class="text-danger">{{ error }}</p>
-            <input class="form-control" type="text" placeholder="Full Name" ng-model="details.name" required /><br />
-            <input class="form-control" type="email" placeholder="Email" ng-model="details.email" required /><br />
-            <input class="form-control" type="password" placeholder="Password" ng-model="details.password" required /><br />
-            <input type="submit" class="btn btn-info btn-lg" value="Register" />
-        </form>
-    </div>
- -->
+	<h1>Post Sports</h1>
+
+</div>
+
 <div class="content"> 
 	<textarea class="textbox" ng-model="storyTxt" placeholder="add your story...." rows="4" cols="50"></textarea> 
 	<br/>
 	<button class="button" ng-click="pushMessage()">submit</button>
 
-		<div ng-repeat="message in messages">
-			<div class="storyContainer">{{message.message}}</div>
-		<button class="button" ng-click="addComment = !addComment"> view or add a comment</button>
+		<div ng-repeat="message in messages | orderBy : 'createdAt' : true"> 
+			<div class="storyContainer">
+				{{message.message}}
+			</div>
+		<button class="button" ng-click="addComment = !addComment"> 
+			view or add a comment
+		</button>
 
 		<br/>
 			<div ng-show="addComment">
-				<input class="commentBox"ng-model="commentTxt" type="text"/>
+				<input class="commentBox" ng-model="commentTxt" type="text"/>
 				
 				<button ng-click="pushComments(message.$id, commentTxt)"class="button">submit</button>
 
 				<hr/>
+				<select ng-model="ascDec" ng-change="triggerDigest()">
+					<option value="true">newest</option>
+					<option value="false">oldest</option>
+				</select>
 
-				<div ng-repeat="comment in message.comments" class=" storyContainer commentContainer">
+				<div ng-repeat="comment in message.comments | orderObjectBy:'comCreatedAt':ascDec" class="storyContainer commentContainer">
 				
 					{{comment.text}}
 				</div>
@@ -69,6 +60,7 @@
 <script src="JS/app.js"></script>
 <script src="JS/mainCtrl.js"></script>
 <script src="JS/service.js"></script>
+<script src="JS/filter.js"></script>
 <script src="login/loginService.js"></script>
 </body>
 </html>
