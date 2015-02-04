@@ -15,7 +15,7 @@
 <div class="content"> 
 	<textarea class="textbox" ng-model="storyTxt" placeholder="add your story...." rows="4" cols="50"></textarea> 
 	<br/>
-	<button class="button" ng-click="pushMessage()">submit</button>
+	<button class="button" ng-click="pushMessage(); stortTxt=''">submit</button>
 
 		<div ng-repeat="message in messages | orderBy : 'createdAt' : true"> 
 			<div class="storyContainer">
@@ -29,7 +29,7 @@
 			<div ng-show="addComment">
 				<input class="commentBox" ng-model="commentTxt" type="text"/>
 				
-				<button ng-click="pushComments(message.$id, commentTxt)"class="button">submit</button>
+				<button ng-click="pushComments(message.$id, commentTxt); commentTxt =''" class="button" >submit</button>
 
 				<hr/>
 				<select ng-model="ascDec" ng-change="triggerDigest()">
@@ -40,6 +40,7 @@
 				<div ng-repeat="comment in message.comments | orderObjectBy:'comCreatedAt':ascDec" class="storyContainer commentContainer">
 				
 					{{comment.text}}
+					{{comment.comCreatedAt}}
 				</div>
 
 				<hr/>
