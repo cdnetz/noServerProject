@@ -32,7 +32,7 @@
 				<button ng-click="pushComments(message.$id, commentTxt); commentTxt =''" class="button" >submit</button>
 
 				<hr/>
-				<select ng-model="ascDec" ng-change="triggerDigest()">
+				<select ng-model="ascDec" ng-change="triggerDigest()" placeholder="order by">
 					<option value="true">newest</option>
 					<option value="false">oldest</option>
 				</select>
